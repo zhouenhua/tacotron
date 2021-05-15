@@ -177,3 +177,10 @@ Pull requests are welcome!
 ## Other Implementations
   * By Alex Barron: https://github.com/barronalex/Tacotron
   * By Kyubyong Park: https://github.com/Kyubyong/tacotron
+  
+  
+## 运行方法
+  * 打开synthesizer.py文件
+  * 'text'是需要合成语音的文本
+  * 'filepath'是合成语音文件保存路径，需要把结果保存成'文件名.wav'格式
+  * 运行`python synthesizer.py`

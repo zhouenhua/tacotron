@@ -25,7 +25,7 @@ class Synthesizer:
     saver.restore(self.session, checkpoint_path)
 
 
-  def synthesize(self, text):
+  def synthesize(self, text, out):
     cleaner_names = [x.strip() for x in hparams.cleaners.split(',')]
     seq = text_to_sequence(text, cleaner_names)
     feed_dict = {
@@ -35,6 +35,13 @@ class Synthesizer:
     wav = self.session.run(self.wav_output, feed_dict=feed_dict)
     wav = audio.inv_preemphasis(wav)
     wav = wav[:audio.find_endpoint(wav)]
-    out = io.BytesIO()
     audio.save_wav(wav, out)
-    return out.getvalue()
+    return
+
+if __name__ == '__main__':
+  s = Synthesizer()
+  s.load("./tacotron-20180906/model.ckpt")
+  filepath = "./out/1.wav"
+  text = "I like playing football"
+  s.synthesize(text, filepath)
+
